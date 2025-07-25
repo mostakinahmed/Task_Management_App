@@ -31,11 +31,14 @@
 
       <div class="task p-10 flex gap-3 flex-wrap">
         <% if (files.length > 0) { %> <% files.forEach(function(val) { %>
-        <div class="w-72 px-3 py-4 bg-zinc-800 rounded-xl shadow-md">
+        <div class="w-72 px-3 py-4 bg-zinc-800 rounded-md shadow-md">
           <h1 class="text-4xl font-bold text-center text-blue-500 mb-4">
             <%=val%>
           </h1>
-          <a class="text-blue-500 inline-block mt-3 hover:underline" href="#">
+          <a
+            class="text-blue-500 inline-block mt-3 hover:underline"
+            href="/file/<%= val%>"
+          >
             Read More.
           </a>
         </div>

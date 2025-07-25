@@ -10,8 +10,22 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.get("/", function (req, res) {
   fs.readdir(`./files`, function (err, files) {
-    res.render("index", { files: files }); //second files is sourch & firs one is destination or use for dom
+    res.render("index", { files: files }); //second files is sourch & first one is destination or use for dom
   });
+});
+
+//-------Read More........
+app.get("/file/:filename", function (req, res) {
+  fs.readFile(
+    `./files/${req.params.filename}`,
+    "utf-8",
+    function (err, filedata) {
+      res.render("./show", {
+        filename: req.params.filename,
+        filedata: filedata,
+      });
+    }
+  );
 });
 
 //getting data from DOM to store in file
