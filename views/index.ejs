@@ -32,9 +32,13 @@
           />
         </form>
       </div>
+
+      <!-- //------------task show------------------- -->
       <div class="task p-10 flex gap-5 flex-wrap">
         <% if (files.length > 0) { %> <% files.forEach(function(val) { %>
-        <div class="w-72 px-5 py-6 bg-zinc-800 rounded-2xl shadow-lg">
+        <div
+          class="w-72 px-5 py-6 bg-zinc-800 rounded-2xl shadow-lg hover:border hover:border-blue-400 hover:border-1 transition-transform duration-300 hover:scale-105"
+        >
           <h1
             class="text-2xl font-semibold text-center text-blue-400 mb-4 break-words"
           >
@@ -47,11 +51,14 @@
             <a class="hover:underline" href="/file/<%= val %>">Read More</a>
 
             <div class="flex gap-4">
-              <a class="hover:text-blue-600" href="/edit/<%= val %>">
+              <a
+                class="hover:text-blue-600 transition-transform duration-300 hover:scale-110"
+                href="/edit/<%= val %>"
+              >
                 <i class="fa-solid fa-pen-to-square"></i>
               </a>
               <a
-                class="text-red-500 hover:text-red-700"
+                class="text-red-500 hover:text-red-700 transition-transform duration-300 hover:scale-110"
                 href="/delete/<%=val%>"
               >
                 <i class="fa-solid fa-trash"></i>

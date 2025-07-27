@@ -14,6 +14,20 @@ app.get("/", function (req, res) {
   });
 });
 
+//getting data from DOM to store in file
+app.post("/create", function (req, res) {
+  if (!req.body.title.trim() || !req.body.details.trim()) {
+    res.redirect("/");
+  } else {
+    fs.writeFile(
+      `./files/${req.body.title.split(" ").join("")}.txt`,
+      req.body.details,
+      function (err) {}
+    );
+  }
+  res.redirect("/");
+});
+
 //-------Read More........
 app.get("/file/:filename", function (req, res) {
   fs.readFile(
@@ -49,19 +63,6 @@ app.get("/delete/:filename", function (req, res) {
   fs.unlink(`./files/${req.params.filename}`, function (err) {
     res.redirect("/");
   });
-});
-
-//getting data from DOM to store in file
-app.post("/create", function (req, res) {
-  if (!req.body.title.trim() || !req.body.details.trim()) {
-    res.redirect("/");
-  } else {
-    fs.writeFile(
-      `./files/${req.body.title.split(" ").join("")}.txt`,
-      req.body.details,
-      function (err) {}
-    );
-  }
 });
 
 app.listen(3000, function () {
