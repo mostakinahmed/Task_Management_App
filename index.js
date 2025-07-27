@@ -28,6 +28,29 @@ app.get("/file/:filename", function (req, res) {
   );
 });
 
+//---------Update--------------
+app.get("/edit/:filename", function (req, res) {
+  res.render("update", { prevName: req.params.filename });
+});
+
+app.post("/update", function (req, res) {
+  fs.rename(
+    `./files/${req.body.prevName}`,
+    `./files/${req.body.newName}.txt`,
+    function (err) {
+      // console.log("name chnaged");
+      res.redirect("/");
+    }
+  );
+});
+
+//---------------delete---------------
+app.get("/delete/:filename", function (req, res) {
+  fs.unlink(`./files/${req.params.filename}`, function (err) {
+    res.redirect("/");
+  });
+});
+
 //getting data from DOM to store in file
 app.post("/create", function (req, res) {
   if (!req.body.title.trim() || !req.body.details.trim()) {
@@ -36,9 +59,7 @@ app.post("/create", function (req, res) {
     fs.writeFile(
       `./files/${req.body.title.split(" ").join("")}.txt`,
       req.body.details,
-      function (err) {
-        res.redirect("/");
-      }
+      function (err) {}
     );
   }
 });
